@@ -12,6 +12,8 @@ namespace HotelReservation
         public double weekEndRateForLoyalty { get; set; }
         public double weekDayRateForLoyalty { get; set; }
 
+        public int ratingOfHotel { get; set; }
+
         public Hotel(Customer customer, double weekDayRate, double weekEndRate)
         {
             if(customer.isRegular)
@@ -24,6 +26,11 @@ namespace HotelReservation
                 this.weekDayRateForLoyalty = weekDayRate;
                 this.weekEndRateForLoyalty = weekEndRate;
             }
+        }
+
+        public void setRatingForHotel(int rating)
+        {
+            this.ratingOfHotel = rating;
         }
     }
 }

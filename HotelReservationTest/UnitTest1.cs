@@ -83,5 +83,13 @@ namespace HotelReservationTest
             string output = reservation.getCheapestHotel(customer, hotels, dates);
             Assert.AreEqual(output, "Hotel: LakeWood, Rate: 210");
         }
+
+        [Test]
+        public void GivenRating_SetRatingToHotel()
+        {
+            hotels[0].setRatingForHotel(4);
+            int ratingForBridgewood = 4;
+            Assert.AreEqual(ratingForBridgewood, hotels[0].ratingOfHotel);
+        }
     }
 }
