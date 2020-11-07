@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HotelReservationTest
+namespace HotelReservation
 {
     public class Customer
     {
-        public double weekEndRate{ get; set; }
-        public double weekDateRate { get; set; }
-
+        public double rateForCustomer{ get; set; }
         public bool isRegular { get; set; }
 
         public Customer(CustomerType customer)
@@ -21,6 +19,12 @@ namespace HotelReservationTest
             {
                 isRegular = false;
             }
+        }
+
+        public double getPriceForDay()
+        {
+            double rateForDay = this.rateForCustomer;
+            return rateForDay;
         }
     }
 }

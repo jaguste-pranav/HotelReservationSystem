@@ -2,17 +2,28 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HotelReservationTest
+namespace HotelReservation
 {
     public class Hotel
     {
-        public double weekEndRate { get; set; }
-        public double weekDayRate { get; set; }
+        public double weekEndRateForRegular { get; set; }
+        public double weekDayRateForRegular { get; set; }
 
-        public Hotel(double weekDayRate, double weekEndRate)
+        public double weekEndRateForLoyalty { get; set; }
+        public double weekDayRateForLoyalty { get; set; }
+
+        public Hotel(Customer customer, double weekDayRate, double weekEndRate)
         {
-            this.weekDayRate = weekDayRate;
-            this.weekEndRate = weekEndRate;
+            if(customer.isRegular)
+            {
+                this.weekDayRateForRegular = weekDayRate;
+                this.weekEndRateForRegular = weekEndRate;
+            }
+            else 
+            {
+                this.weekDayRateForLoyalty = weekDayRate;
+                this.weekEndRateForLoyalty = weekEndRate;
+            }
         }
     }
 }
