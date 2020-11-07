@@ -45,5 +45,22 @@ namespace HotelReservationTest
             string output = reservation.getCheapestHotel(customer, hotels, dates);
             Assert.AreEqual(output, "Hotel: LakeWood, Rate: 220");
         }
+        public void GivenHotelNames_SetNewRates()
+        {
+            List<Hotel> hotelsWithNewRate = new List<Hotel>();
+            Customer customer = new Customer(CustomerType.REGULAR);
+
+            Hotel BridgeWood = new Hotel(customer, 150, 50);
+            Hotel RidgeWood = new Hotel(customer, 220, 150);
+            Hotel LakeWood = new Hotel(customer, 110, 90);
+
+            hotelsWithNewRate.Add(BridgeWood);
+            hotelsWithNewRate.Add(RidgeWood);
+            hotelsWithNewRate.Add(LakeWood);
+
+            int countOfHotels = 3;
+            int countOfHotelsinList = hotelsWithNewRate.Count;
+            Assert.AreEqual(countOfHotels, countOfHotelsinList);
+        }
     }
 }
