@@ -19,17 +19,17 @@ namespace HotelReservation
             {
                 foreach (string date in dates)
                 {
-                    
+
                     if (isWeekEnd(date))
                     {
-                        
+
                         rateForBridgeWood = rateForBridgeWood + hotels[0].weekEndRateForRegular;
                         rateForRidgeWood = rateForRidgeWood + hotels[1].weekEndRateForRegular;
                         rateForLakeWood = rateForLakeWood + hotels[2].weekEndRateForRegular;
                     }
                     else
-                    { 
-                       
+                    {
+
                         rateForBridgeWood = rateForBridgeWood + hotels[0].weekDayRateForRegular;
                         rateForRidgeWood = rateForRidgeWood + hotels[1].weekDayRateForRegular;
                         rateForLakeWood = rateForLakeWood + hotels[2].weekDayRateForRegular;
@@ -37,10 +37,6 @@ namespace HotelReservation
                     }
 
                 }
-
-                Console.WriteLine("B: "+rateForBridgeWood);
-                Console.WriteLine("L: "+rateForLakeWood);
-                Console.WriteLine("R: "+rateForRidgeWood);
 
                 if (rateForBridgeWood < rateForLakeWood && rateForBridgeWood < rateForRidgeWood)
                 {
@@ -120,6 +116,28 @@ namespace HotelReservation
                 return true;
             }
             return false;
+        }
+
+        public string getCheapestBestRatedHotel(Customer customer, List<Hotel> hotels, string[] dates)
+        {
+            string cheapestHotel = getCheapestHotel(customer, hotels, dates);
+            string output = "";
+            if (cheapestHotel.ToLower().Contains("bridgewood"))
+            {
+                output = cheapestHotel + " Rating: " + hotels[0].ratingOfHotel;
+            }
+
+            if (cheapestHotel.ToLower().Contains("ridgewood"))
+            {
+                output = cheapestHotel +" Rating: " + hotels[1].ratingOfHotel;
+            }
+
+            if (cheapestHotel.ToLower().Contains("lakewood"))
+            {
+                output = cheapestHotel + " Rating: " + hotels[2].ratingOfHotel;
+            }
+
+            return output;
         }
     }
 }

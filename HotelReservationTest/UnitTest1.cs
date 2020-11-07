@@ -91,5 +91,14 @@ namespace HotelReservationTest
             int ratingForBridgewood = 4;
             Assert.AreEqual(ratingForBridgewood, hotels[0].ratingOfHotel);
         }
+        [Test]
+        public void Givendates_GetCheapestBestRatedHotel()
+        {
+            Customer customer = new Customer(CustomerType.REGULAR);
+            string[] dates = { "11-09-2020", "12-09-2020" };
+            HotelReservationService reservation = new HotelReservationService();
+            string output = reservation.getCheapestBestRatedHotel(customer, hotels, dates);
+            Assert.AreEqual("Hotel: Lakewood, Rate: 200, Rating: 3", output);
+        }
     }
 }
