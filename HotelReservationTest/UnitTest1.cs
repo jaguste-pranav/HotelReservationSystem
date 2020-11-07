@@ -154,5 +154,6 @@ namespace HotelReservationTest
             double actual = rewardCustomerHotelList[1].weekEndRateForLoyalty;
             Assert.AreEqual(weekEndRateForRewardConstumerRidgewood, actual);
         }
+
     }
 }
