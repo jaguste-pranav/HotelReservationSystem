@@ -49,7 +49,7 @@ namespace HotelReservationTest
         [Test]
         public void GivenHotelNames_SetNewRates()
         {
-           
+
             Customer customer = new Customer(CustomerType.REGULAR);
 
             Hotel BridgeWood = new Hotel(customer, 150, 50);
@@ -154,6 +154,28 @@ namespace HotelReservationTest
             double actual = rewardCustomerHotelList[1].weekEndRateForLoyalty;
             Assert.AreEqual(weekEndRateForRewardConstumerRidgewood, actual);
         }
+        [Test]
+        public void GivenWeekDayandWeekEnd_ReturnCheapestHotelRewardCustomer()
+        {
+            List<Hotel> RewardCustomersHotelList = new List<Hotel>();
+            Customer customer = new Customer(CustomerType.REWARD);
 
+            Hotel BridgeWood = new Hotel(customer, 160, 60);
+            Hotel RidgeWood = new Hotel(customer, 220, 150);
+            Hotel LakeWood = new Hotel(customer, 110, 90);
+
+            RewardCustomersHotelList.Add(BridgeWood);
+            RewardCustomersHotelList.Add(RidgeWood);
+            RewardCustomersHotelList.Add(LakeWood);
+
+            RewardCustomersHotelList[0].setRatingForHotel(4);
+            RewardCustomersHotelList[1].setRatingForHotel(5);
+            RewardCustomersHotelList[2].setRatingForHotel(3);
+
+            string[] dates = { "12-09-2020", "13-09-2020" };
+            HotelReservationService reservation = new HotelReservationService();
+            string output = reservation.getCheapestBestRatedHotel(customer, hotels, dates);
+            Assert.AreEqual("Hotel: Ridgewood, Rate: 140, Rating: 5", output);
+        }
     }
 }
