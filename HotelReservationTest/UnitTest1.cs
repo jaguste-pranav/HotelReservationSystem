@@ -95,10 +95,64 @@ namespace HotelReservationTest
         public void Givendates_GetCheapestBestRatedHotel()
         {
             Customer customer = new Customer(CustomerType.REGULAR);
+
+            Hotel BridgeWood = new Hotel(customer, 160, 60);
+            Hotel RidgeWood = new Hotel(customer, 220, 150);
+            Hotel LakeWood = new Hotel(customer, 110, 90);
+
+            hotels.Add(BridgeWood);
+            hotels.Add(RidgeWood);
+            hotels.Add(LakeWood);
+
+            hotels[0].setRatingForHotel(4);
+            hotels[1].setRatingForHotel(5);
+            hotels[2].setRatingForHotel(3);
+
             string[] dates = { "11-09-2020", "12-09-2020" };
             HotelReservationService reservation = new HotelReservationService();
             string output = reservation.getCheapestBestRatedHotel(customer, hotels, dates);
-            Assert.AreEqual("Hotel: Lakewood, Rate: 200, Rating: 3", output);
+            Assert.AreEqual("Hotel: LakeWood, Rate: 200, Rating: 3", output);
+        }
+
+        [Test]
+        public void Givendates_GetHighestRatedHotel()
+        {
+            Customer customer = new Customer(CustomerType.REGULAR);
+
+            Hotel BridgeWood = new Hotel(customer, 160, 60);
+            Hotel RidgeWood = new Hotel(customer, 220, 150);
+            Hotel LakeWood = new Hotel(customer, 110, 90);
+
+            hotels.Add(BridgeWood);
+            hotels.Add(RidgeWood);
+            hotels.Add(LakeWood);
+
+            hotels[0].setRatingForHotel(4);
+            hotels[1].setRatingForHotel(5);
+            hotels[2].setRatingForHotel(3);
+
+            string[] dates = { "11-09-2020", "12-09-2020" };
+            HotelReservationService reservation = new HotelReservationService();
+            string output = reservation.getHighestRatedHotel(customer, hotels, dates);
+            Assert.AreEqual("Hotel: RidgeWood, Rate: 370, Rating: 5", output);
+        }
+
+        [Test]
+        public void GivenRewardRate_SetRatesToHotels()
+        {
+            Customer customer = new Customer(CustomerType.REWARD);
+            List<Hotel> rewardCustomerHotelList = new List<Hotel>();
+            Hotel BridgeWood = new Hotel(customer, 110, 50);
+            Hotel RidgeWood = new Hotel(customer, 100, 40);
+            Hotel LakeWood = new Hotel(customer, 80, 80);
+
+            rewardCustomerHotelList.Add(BridgeWood);
+            rewardCustomerHotelList.Add(RidgeWood);
+            rewardCustomerHotelList.Add(LakeWood);
+
+            double weekEndRateForRewardConstumerRidgewood = 40;
+            double actual = rewardCustomerHotelList[1].weekEndRateForLoyalty;
+            Assert.AreEqual(weekEndRateForRewardConstumerRidgewood, actual);
         }
     }
 }
